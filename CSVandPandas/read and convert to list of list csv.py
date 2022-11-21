@@ -1,11 +1,13 @@
 import csv
 import numpy as np
+import pandas as pd
 
 # import nyc_taxi.csv as a list of lists
-f = open("taxi_zone_lookup.csv", "r")
+f = open("CSVandPandas\\taxi_zone_lookup.csv", "r")
 taxi_list = list(csv.reader(f))
 
 # remove the header row
+taxi_col = taxi_list[:-1]
 taxi_list = taxi_list[1:]
 
 # convert all values to floats
@@ -37,3 +39,6 @@ taxi[3, 3]
 #Для выбора нескольких строк или столбцов можно использовать массив значений
 taxi[[4, 55, 80], 3]
 
+# Создание файла из таблицы с помощью PANDAS
+df = pd.DataFrame(taxi, columns=taxi_col)
+df.to_csv(r'CSVandPandas/cartridge_accounting.csv')
